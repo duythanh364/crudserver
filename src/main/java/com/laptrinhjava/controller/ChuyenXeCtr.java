@@ -63,6 +63,7 @@ public class ChuyenXeCtr {
             c.setSoKhach(chuyenxe.getSoKhach());
             c.setTuyenXe(chuyenxe.getTuyenXe());
             c.setXeKhach(chuyenxe.getXeKhach());
+            c.setNgayKhoiHanh(chuyenxe.getNgayKhoiHanh()); //Thêm
             return chuyenXeRepo.save(c);
         } catch (DataIntegrityViolationException e) {
             return null;
