@@ -36,22 +36,22 @@ public class ChuyenXeCtr {
 
     @GetMapping("/{start}/{end}")
     public List<ChuyenXe> getAllBetween(@PathVariable("start") Date start, @PathVariable("end") Date end) throws ParseException {
-            return chuyenXeImpl.getAllBetween(start, end);
+        return chuyenXeImpl.getAllBetween(start, end);
     }
 
     @PostMapping
     public ChuyenXe insert(@RequestBody ChuyenXe chuyenxe) {
-            return chuyenXeImpl.insert(chuyenxe);
+        return chuyenXeImpl.insert(chuyenxe);
     }
 
     @PutMapping
     public ChuyenXe update(@RequestBody ChuyenXe chuyenxe) {
-            return chuyenXeImpl.update(chuyenxe);
+        return chuyenXeImpl.update(chuyenxe);
     }
 
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable int id) {
-         chuyenXeImpl.delete(id);
+        chuyenXeImpl.delete(id);
 
 
     }
