@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-@Repository
+
 public interface ITuyenXeRepository extends JpaRepository<TuyenXe, Integer> {
     @Query("Select tuyenXe from TuyenXe tuyenXe where tuyenXe.diemDau like %?1%")
     List<TuyenXe> findByDiemDau(String key);

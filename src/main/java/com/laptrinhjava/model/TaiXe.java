@@ -1,5 +1,6 @@
 package com.laptrinhjava.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class TaiXe {
     private String diaChi;
     private Date ngaySinh;
     private int thamNien;
+
     @ManyToOne(targetEntity = Luong.class)
     @JoinColumn(name="luong_id")
     private Luong luong;

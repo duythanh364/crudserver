@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
 
-@Repository
+
 public interface IXeKhachRepository extends JpaRepository<XeKhach,Integer> {
     @Query("select xeKhach from XeKhach xeKhach where xeKhach.bienSo like %?1%")
     List<XeKhach> findAllByBienSo(String bienSo);

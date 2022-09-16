@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
 
-@Repository
+
 public interface IChuyenXeRepository extends JpaRepository<ChuyenXe,Integer> {
     @Query("Select u from ChuyenXe u where u.ngayKhoiHanh>=?1 and u.ngayKhoiHanh<= ?2 ORDER BY u.ngayKhoiHanh")
     List<ChuyenXe> findByNgayKhoiHanhBetweenOrder(Date start, Date end);

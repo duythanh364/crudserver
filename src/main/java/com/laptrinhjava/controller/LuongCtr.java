@@ -2,57 +2,39 @@ package com.laptrinhjava.controller;
 
 
 import com.laptrinhjava.model.Luong;
-import com.laptrinhjava.repository.ILuongRepository;
+import com.laptrinhjava.modelRes.LuongRes;
+import com.laptrinhjava.service.IBacLuongService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path="/api/bacluong", produces = "application/json")
+@CrossOrigin("http://localhost:3000")
 public class LuongCtr {
     @Autowired
-    ILuongRepository luongRepo;
+    IBacLuongService bacLuongService;
 
     @GetMapping
-    public List<Luong> getAll(){
-        return luongRepo.findAll();
+    public List<LuongRes> getAll(){
+       return bacLuongService.getAll();
     }
 
     @GetMapping(path="/{id}")
     public Luong getById(@PathVariable int id){
-        return luongRepo.findById(id).get();
+        return bacLuongService.getByID(id);
     }
     @PostMapping
     public Luong insert(@RequestBody Luong luong){
-        try {
-            return luongRepo.save(luong);
-        } catch (DataIntegrityViolationException e) {
-            return null;
-        }
-
+        return bacLuongService.create(luong);
     }
     @PutMapping()
     public Luong update(@RequestBody Luong luong){
-        try {
-            Luong l = luongRepo.findById(luong.getId()).get();
-            l.setLuongCoBan(luong.getLuongCoBan());
-            l.setHeSoLuong(luong.getHeSoLuong());
-            l.setLuongMoiChuyen(luong.getLuongMoiChuyen());
-            return luongRepo.save(l);
-        } catch (DataIntegrityViolationException e) {
-            return null;
-        }
-
+        return bacLuongService.update(luong);
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id){
-        try {
-            luongRepo.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            System.out.println(e.getMessage());
-        }
-
+        bacLuongService.delete(id);
     }
 }
